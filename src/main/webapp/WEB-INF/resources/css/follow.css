@@ -1,0 +1,88 @@
+		.follow{
+			border-top:1px solid #8C8C8C;
+			border-bottom:1px solid #8C8C8C;
+			display:inline-block;
+			margin-top:2%;
+			padding:2%;
+			width: 88%;
+    		margin-left: 4%;
+		}
+        .follow .profile_img img{
+        	width:100%;
+        	display:inline-block;
+        }
+        .follow .profile_img{
+        	width:10%;
+        	margin-top:30px;
+        	height:auto;
+        	float:left;
+        	margin-left:6.5%;
+        	display:inline-block;
+        }
+        .profile_div{
+        	width:18%;
+        	display:inline-block;
+        	float:left;
+        	margin-top:20px;
+        }
+        .profile_div .follow_nickname{
+    		height: auto;
+    		margin-top: 10px;
+    		margin-left:30px;
+    		font-size: 2vw;
+    		padding: 0;
+    		font-weight: bold;
+    		margin-bottom:5px;
+        }
+        .profile_div .follwer_img{
+        	display: inline-block;
+		    float: left;
+		    width: 17%;
+		    height: auto;
+		    margin-left: 30px;
+		    padding: 4px;
+		    border-radius: 7px;
+		    margin-top: 10px;
+		    background-color:white;
+        }
+        .profile_div .follower_img img{
+        	width:100%;
+        	height:auto;
+        }
+        .profile_div .follower{
+        	height: auto;
+		    font-size: 1vw;
+		    padding: 0;
+		    display: inline-block;
+		    margin-top:10px;
+		    font-weight:bold;
+		    text-align:center;
+		    margin-left: 10px;
+		    color: #5D5D5D;
+        }
+        .profile_div .profile_message{
+        	display: inline-block;
+		    float: left;
+		    font-size: 2vw;
+		    margin-top: 15px;
+		    margin-left: 10px;
+		    font-family: 'Nanum Pen Script', cursive;
+        }
+        .follow .recent_product{
+        	width:64%;
+        	height:auto;
+		    float: left;
+		    display: inline-block;
+        }
+        .follow .recent_product .imgBack{
+        	width: 27%;
+		    display: inline-block;
+		    padding: 10px;
+		    background-color: white;
+		    margin-left:10px;
+        }
+        
+        .follow .recent_product .imgBack img{
+        	width: 100%;
+    		display: inline-block;
+        }

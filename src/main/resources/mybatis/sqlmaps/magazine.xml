@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.myapp.dao.MagazineDao">
+    <insert id="insertMagazineContent" parameterType="java.util.HashMap">
+        insert into magazine(
+            subject,
+            subtitle,
+            content,
+            main_img_path
+        )values(
+            #{subject},
+            #{subtitle},
+            #{content},
+            #{main_img_path}
+        )
+    </insert>
+    <insert id="updateMagazineContent" parameterType="java.util.HashMap">
+        update
+            magazine
+        set
+            subject = #{subject},
+            subtitle = #{subtitle},
+            content = #{content},
+            main_img_path = #{main_img_path}
+        where
+            id = #{id}
+    </insert>
+    <select id="selectMagazineContentCnt" resultType="int" parameterType="java.util.HashMap">
+        select
+            count(id)
+        from
+            magazine
+    </select>
+    <select id="selectMagazineContent" resultType="com.spring.myapp.domain.Magazine" parameterType="java.util.HashMap">
+        select
+            id,
+            subject,
+            subtitle,
+            content,
+            main_img_path,
+            date_format(register_datetime, '%Y-%m-%d %H:%i:%s') register_datetime
+        from
+            magazine
+        order by id
+        limit #{start}, #{end}
+    </select>
+    <select id="selectMagazineContentView" resultType="com.spring.myapp.domain.Magazine" parameterType="java.util.HashMap">
+        select
+            id,
+            subject,
+            subtitle,
+            content,
+            main_img_path,
+            date_format(register_datetime, '%Y-%m-%d %H:%i:%s') register_datetime
+        from
+            magazine
+        where
+            id = #{id}
+    </select>
+	<select id="selectMagazineCnt" resultType="int" parameterType="java.util.HashMap">
+        select
+            count(id)
+        from
+            magazine
+        where
+            id = #{id}
+    </select>
+    <delete id="deleteMagazine" parameterType="java.util.HashMap">
+        delete
+        from
+            magazine
+        where
+            id = #{id}
+    </delete>
+</mapper>
+ 

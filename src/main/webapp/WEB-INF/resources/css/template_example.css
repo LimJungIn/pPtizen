@@ -1,0 +1,120 @@
+body {
+    background-color: rgb(244, 244, 244);
+    /*css로 숫자 생성(page num++)*/
+    counter-reset: page;
+}
+
+.s1 {
+    margin: 0 auto;
+}
+
+.article-list{
+    margin-top: 5%;
+    text-align: center;
+}
+
+/***************************
+ *  반응형 CSS
+ ***************************/
+@media (max-width:651px) {
+    .s1 {
+        width: 100%;
+    }
+    .article-list__item{
+        width: 100%;
+    }
+    .article-list__template__image {
+        height: 35%;
+    }
+}
+@media (min-width:652px) and (max-width:1469px) {
+    .s1 {
+        width: 100%;
+    }
+    .article-list__item{
+        max-width: 50%;
+        width: 320px;
+    }
+    .article-list__template__image {
+        height: 15em;
+    }
+}
+@media (min-width:1470px) and (max-width:1809px) {
+    .s1 {
+        width: 89%;
+    }
+    .article-list__item{
+        max-width: 50%;
+        width: 320px;
+    }
+    .article-list__template__image {
+        height: 15em;
+    }
+}
+@media (min-width:1810px) {
+    .s1 {
+        width: 85%;
+    }
+    .article-list__item{
+        max-width: 50%;
+        width: 380px;
+    }
+    .article-list__template__image {
+        height: 15em;
+    }
+}
+
+/***************************
+ *   분 CSS
+ ***************************/
+.article-list__page {
+    border-top: 1px solid #ddd;
+    clear: both;
+    padding-bottom: 3em;
+    position: relative;
+}
+
+.article-list__item {
+/*  background-color: dodgerblue;*/
+    display: inline-block;
+    height: auto;
+    opacity: .75;
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+    transition: opacity 0.2s, -webkit-transform 0.2s;
+    transition: opacity 0.2s, transform 0.2s;
+    transition: opacity 0.2s, transform 0.2s, -webkit-transform 0.2s;
+}
+/*
+.article-list__item:hover {
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}*/
+
+
+/***************************
+ *  템플릿 이미지 부분 CSS
+ ***************************/
+.article-list__template {
+    background-color: white;
+    padding-top: 5%;
+    padding-bottom: 1%;
+    
+}
+.article-list__template > p {
+    text-align: right;
+    font-weight: bold;
+    padding-right: 8.5%;
+    margin: 1% auto;
+}
+.article-list__template__image {
+    display: block;
+    width: 87%;
+    margin: auto;
+    opacity: 1;
+    transition: opacity 0.2s;
+}
+.article-list__template__image--loading {
+    opacity: 0;
+}

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.myapp.dao.DiyzDao">
+    <insert id="insertDiyzImg" parameterType="java.util.HashMap">
+        insert into diyz_image (
+        	kinds,
+        	img_path,
+            tag1,
+            tag2,
+            tag3
+        )values(
+            #{kinds},
+            #{img_path},
+            #{tag1},
+            #{tag2},
+            #{tag3}
+        )
+    </insert>
+    <insert id="updateDiyzImg" parameterType="java.util.HashMap">
+        update
+            diyz_image
+        set
+            kinds = #{kinds},
+            img_path = #{img_path},
+            tag1 = #{tag1},
+            tag2 = #{tag2},
+            tag3 = #{tag3}
+        where
+            img_id = #{img_id}
+    </insert>
+    
+    <select id="selectDiyzContentCnt" resultType="int" parameterType="java.util.HashMap">
+        select
+            count(img_id)
+        from
+            diyz_image
+    </select>
+    
+    <select id="selectDiyzImg" resultType="com.spring.myapp.domain.Diyz" parameterType="java.util.HashMap">
+        select
+            img_id,
+            kinds,
+            img_path,
+            tag1,
+            tag2,
+            tag3
+        from
+            diyz_image
+        order by img_id desc
+        limit #{start}, #{end}
+    </select>
+    <select id="selectDiyzImgView" resultType="com.spring.myapp.domain.Diyz" parameterType="java.util.HashMap">
+        select
+            img_id,
+            kinds,
+            img_path,
+            tag1,
+            tag2,
+            tag3
+        from
+            diyz_image
+        where
+            img_id = #{img_id}
+            <!-- FIND_IN_SET(#{img_id}, img_id) -->
+    </select>
+    <delete id="dropDiyzImg" parameterType="java.util.HashMap">
+        delete
+        from
+            diyz_image
+        where
+            img_id IN <foreach collection="list" item="img_id" open="(" separator="," close=")">#{img_id}</foreach>
+    </delete>
+    
+    <!-- DIYZ 선택 데이터 뽑아오는 쿼리 -->
+    <select id="selectDiyzSelectData" resultType="com.spring.myapp.domain.Diyz" parameterType="java.util.HashMap">
+        select
+            img_id,
+            kinds,
+            img_path
+        from
+            diyz_image
+        where
+        	<foreach collection="colors" item="color" open="(" close=")" separator="OR">
+				FIND_IN_SET(#{color}, tag1)
+			</foreach>
+		union
+		select
+            img_id,
+            kinds,
+            img_path
+        from
+            diyz_image
+        where
+        	<foreach collection="layouts" item="layout" open="(" close=")" separator="OR">
+				FIND_IN_SET(#{layout}, tag2)
+			</foreach>
+		union
+		select
+            img_id,
+            kinds,
+            img_path
+        from
+            diyz_image
+        where
+        	<foreach collection="themes" item="theme" open="(" close=")" separator="OR">
+				FIND_IN_SET(#{"theme"}, tag3)
+			</foreach>
+            <!-- FIND_IN_SET(#{colors}, tag1) -->
+    </select>
+    
+</mapper>

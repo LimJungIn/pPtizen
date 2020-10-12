@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.myapp.dao.UserDao">
+	<!--상태메시지 추가  -->
+	 <insert id="insertUser" parameterType="java.util.HashMap">
+	        insert into users(
+	             user_id
+				,user_pw
+				,user_name 
+				,user_birth 
+				,user_phonenum
+				,user_job  
+				,user_nickname 
+				,user_email 
+	            ,user_profile
+	        )values(
+	             #{user_id}
+	            ,#{user_pw}
+	            ,#{user_name}
+	            ,#{user_birth}
+	            ,#{user_phonenum}
+	            ,#{user_job}
+	            ,#{user_nickname}
+	            ,#{user_email}
+	            ,#{user_profile}
+	        )
+	</insert>
+	<update id="updateUser" parameterType="java.util.HashMap">
+	        update
+	            users
+	        set
+	            user_pw = #{user_pw}
+	        where
+	            user_id = #{user_id}
+	</update>
+	<update id="updateWithdraw" parameterType="java.util.HashMap">
+	        update
+	            users
+	        set
+	            withdraw = 1
+	        where
+	            user_id = #{user_id}
+	</update>
+	<delete id="deleteUser" parameterType="java.util.HashMap">
+        delete
+        from
+            users
+        where
+            user_id = #{user_id}
+    </delete>
+    <delete id="dropUser" parameterType="java.util.HashMap">
+        delete
+        from
+            users
+        where
+     		withdraw = 1
+     		and
+            user_id IN <foreach collection="list" item="id" open="(" separator="," close=")">#{id}</foreach>
+    </delete>
+    <select id="checkId" resultType="int" parameterType="java.util.HashMap">
+        select count(*)
+        from
+            users
+        where
+            user_id = #{user_id}
+    </select>
+    <select id="checkNickName" resultType="int" parameterType="java.util.HashMap">
+        select count(*)
+        from
+            users
+        where
+            user_nickname  = #{user_nickname}
+    </select>
+    <select id="checkEmail" resultType="int" parameterType="java.util.HashMap">
+        select count(*)
+        from
+            users
+        where
+            user_email  = #{user_email}
+    </select>
+    <select id="login" resultType="int"  parameterType="java.util.HashMap">
+        select count(*)
+        from
+            users
+        where
+            (user_id  = #{user_id}  and user_pw = #{user_pw})
+    </select>
+    <select id="selectUserView" resultType="com.spring.myapp.domain.User" parameterType="java.util.HashMap">
+    	select *
+    	from 
+    		users
+    	where
+    		user_id=#{user_id}
+    </select>
+     <select id="selectUsers" resultType="com.spring.myapp.domain.User" parameterType="java.util.HashMap">
+	    	select 
+	    		 user_id
+				,user_pw
+				,user_name 
+				,user_birth 
+				,user_phonenum
+				,user_job  
+				,user_nickname 
+				,user_email 
+				,withdraw
+				,user_profile
+	    	from 
+	    		users
+	    	order by user_id
+    </select>
+    <select id="getNickName" resultType="String" parameterType="java.util.HashMap">
+    	select user_nickname
+    	from 
+    		users
+    	where
+    		user_id=#{user_id}
+    </select>
+    
+    <!--follow+내 정보 수정 최종본  -->
+    <update id="updateEmail" parameterType="java.util.HashMap">
+	        update
+	            users
+	        set
+	            user_email = #{user_email}
+	        where
+	            user_id = #{user_id}
+	</update>
+	
+	<update id="updatePhonenum" parameterType="java.util.HashMap">
+	        update
+	            users
+	        set
+	            user_phonenum = #{user_phonenum}
+	        where
+	            user_id = #{user_id}
+	</update>
+	
+	<update id="updateJob" parameterType="java.util.HashMap">
+	        update
+	            users
+	        set
+	            user_job = #{user_job}
+	        where
+	            user_id = #{user_id}
+	</update>
+	
+	<update id="updateProfile" parameterType="java.util.HashMap">
+	        update
+	            users
+	        set
+	            user_profile = #{user_profile}
+	        where
+	            user_id = #{user_id}
+	</update>
+</mapper>

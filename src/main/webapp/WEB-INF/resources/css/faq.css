@@ -1,0 +1,127 @@
+a {
+    text-decoration: none;
+}
+
+.fap div a {
+    color: black;
+}
+.fap .select a{
+        color: #1d89ff;
+}
+.fap .select {
+    color: #1d89ff;
+    border-bottom: 2px #1d89ff solid;
+}
+
+/* 스크롤탭 css 시작 */
+.accordion-container {
+    font-family: 'Nanum Gothic', sans-serif;
+    position: relative;
+    width: 100%;
+    border-top: none;
+    outline: 0;
+    cursor: pointer
+}
+
+.accordion-container .article-title {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0.625em 0.625em 0.625em 3em;
+    border-bottom: 1px solid black;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+}
+
+.accordion-container .content-entry i {
+    position: absolute;
+    top: 3px;
+    left: 12px;
+    font-style: normal;
+    font-size: 1.625em;
+    color: #0079c1;
+}
+
+.accordion-container .content-entry i:before {
+    content: "Q.";
+    color: black;
+}
+
+.accordion-container .content-entry.open i:before {
+    content: "Q.";
+}
+
+.accordion-content {
+    display: none;
+    height: 100%;
+    font-size: 13px;
+    background-color: rgb(224, 224, 224);
+    padding: 15px 47px;
+
+}
+
+/* This stuff is just for the Codepen demo */
+.faq-section {
+    width: 100%;
+}
+
+#content {
+    width: 92%;
+    float: left;
+    margin: 25px 4%;
+}
+
+body {
+    float: left;
+    width: 100%;
+    margin: 0;
+}
+
+.accordion-container,
+#description {
+    float: left;
+    width: 100%;
+}
+
+#description p {
+    line-height: 1.5;
+}
+
+#description h2 {
+    text-align: center;
+}
+
+/* 스크롤탭 css 끝*/
+
+.faq-section > .faq-links {
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+}
+
+.faq-links div {
+    float: left;
+    width: 21%;
+    text-align: center;
+    padding: 1% 2%;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+@media all and (max-width: 720px) {
+    #content {
+        width: 100%;
+        margin: 0;
+    }
+
+    .faq-links div {
+        float: left;
+        width: 21%;
+        text-align: center;
+        padding: 1% 2%;
+        font-size: 13px;
+        font-weight: bold;
+    }
+}

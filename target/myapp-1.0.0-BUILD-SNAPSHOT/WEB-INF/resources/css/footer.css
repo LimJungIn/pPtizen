@@ -1,0 +1,31 @@
+ @import url('https://fonts.googleapis.com/css?family=Arbutus+Slab|Cantata+One|Lusitana');
+            body, .pptizen-footer{
+                float:left;
+                width: 100%;
+            }
+            .pptizen-footer{
+               background: white;
+            }
+            .pptizen>.footer-content{
+                float: left;
+                width: 100%;
+            }
+            .footer-content{
+                margin: 1% 1.5% 0.2% 1.5%;
+            }
+            .footer-content  img{
+                width:75px;
+                height: 35px;
+            }
+            
+            .footer-content{
+                float: left;
+                width: 100%;
+                font-family: 'Cantata One', serif;
+                font-size:12px;
+  
+            }
+            .footer-sns img{
+                width:2%;
+            }
+           

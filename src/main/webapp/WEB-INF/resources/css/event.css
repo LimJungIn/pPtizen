@@ -1,0 +1,53 @@
+@charset "UTF-8";
+#gs2{
+   font-family: 'Noto Sans KR', sans-serif;
+}
+#ev{
+   float:left;
+   width:100%;
+}
+#ev>div{
+   float:left;
+   width:100%;
+}
+#ev>div>div{
+   width:42%;
+   float:left;
+   margin-left:5%;
+}
+#ev>div>div>img{
+   width:100%;
+}
+.gs2right>div{
+   float:left;
+   width:auto;
+   margin:30px 30px 100px 30px;
+}
+#evboard td{
+   font-size:13px;
+   text-align:center;
+}
+#evboard{
+   text-align:center;
+   float:left;
+   width:100%;
+}
+#evboard tr,th{
+   font-size:15px;
+   text-align:center;
+}
+#gs2 a{
+   text-decoration:none;
+}
+#gs2 a:link{
+   color:black;
+}
+#gs2 a:visited{
+   color:black;
+}
+#gs2 a:active{
+   color:rgb(76,76,76);
+}
+#gs2 a:hover{
+   color:grey;
+}

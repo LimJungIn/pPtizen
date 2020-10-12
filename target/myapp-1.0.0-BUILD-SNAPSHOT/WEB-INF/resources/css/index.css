@@ -1,0 +1,51 @@
+#container{
+    float:left;
+    width:92%;
+    margin: 25px 4% 25px 4%;
+    background-color: white;
+}
+#container>nav{
+    float:left;
+    width:100%;
+}
+#container .index-banner{
+    float:left;
+    width:100%;
+}
+.index-banner img{
+    width:100%;
+    height:590px;
+}
+#container>.index-content{
+    float:left;
+    width:100%;
+}
+.index-content img{
+    width:42%;
+    margin-left: 29%;
+    margin-right: 29%;
+}
+.index-content .index-img1{
+    float:left;
+    width:100%;
+    background-color: rgb(204,108,77);
+}
+.index-content .index-img2{
+    float:left;
+    width:100%;   
+}
+.index-content .index-img3{
+    float:left;
+    width:100%;
+    background-color: rgb(224,184,79);
+}
+.index-content .index-img4{
+    float:left;
+    width:100%;
+}
+.index-content .index-img5{
+    float:left;
+    width:100%;
+    background-color: rgb(55,137,84);
+}
+

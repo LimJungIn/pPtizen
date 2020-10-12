@@ -1,0 +1,129 @@
+form{
+    margin-bottom: 30px;
+}
+.mypage-post {
+    margin: 0;
+    background-color: rgb(241, 241, 241);
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+.mypage-post a{
+    text-decoration: none;
+}
+
+.post-top-section,
+.post-content-section {
+    float: left;
+    width: 92%;
+    margin: 0 4%;
+}
+
+.post-top-section{
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+}
+
+/*상단 section*/
+.post-top-section {
+    margin-top: 25px;
+    padding: 12px 0
+}
+
+.post-top-section .profile {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+}
+
+.post-top-section .profile img {
+    width: 120px;
+}
+
+.post-top-section .nickname {
+    width: 200px;
+    height: 25px;
+    margin: 0 auto;
+    padding: 10px 1% 0 1%;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.post-top-section .sub-nav {
+    position: absolute;
+    right: 6%;
+}
+
+.sub-nav a {
+    margin-left: 5px;
+}
+
+.post-top-section .sub-nav img {
+    width: 18px;
+}
+
+/*nav 메뉴*/
+.mypage-post nav{
+    
+}
+/*
+.mypage-post nav ul {
+    float: left;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.mypage-post nav li {
+    float: left;
+    width: 33.3%;
+    list-style-type: none;
+    padding-top: 10px;
+}
+*/
+
+/*선택된 메뉴(nav) 색상 변경 테스트용*/
+.mypage-post nav .select-test{
+    color: #1d89ff;
+    border-bottom: 2px #1d89ff solid;
+}
+
+/*
+.mypage-post nav a {
+    padding-bottom: 10px;
+    color: #555555;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.mypage-post nav a span{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+*/
+
+/*하단 section*/
+.post-content-section {
+    margin: 25px 4% 25px 4%;
+}
+
+/*반응형*/
+@media only screen and (max-width: 360px) {
+    .post-top-section .profile {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+    }
+
+    .post-top-section .profile img {
+        width: 100px;
+    }
+}

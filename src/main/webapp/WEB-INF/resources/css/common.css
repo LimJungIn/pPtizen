@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
+@import url('https://fonts.googleapis.com/css?family=Cairo|Gothic+A1');
+@import url('https://fonts.googleapis.com/css?family=Francois+One');
+@import url('https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap');
+
+/* chrome, opera scroll */
+::-webkit-scrollbar-track/*화살표를 제외한 몸통 부분*/
+{
+   background-color: #F5F5F5;
+   border-radius: 8px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); /*rgba : rgb+투명도 설정*/
+}
+
+::-webkit-scrollbar/*스크롤 바 영역 전체*/
+{
+   width: 8px;
+   background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb/*몸통에서 실제 움직이는 부분*/
+{
+   border-radius: 8px;
+   background-color: #1d89ff;
+}

@@ -1,0 +1,129 @@
+@charset "UTF-8";
+#gs1, #gs2, #gs3{
+   font-family: 'Noto Sans KR', sans-serif;
+}
+#gs1{
+   clear:both;
+   width:100%;
+}
+#gs1 div{
+   height:21px;
+   padding:6px 30px 0px 0px;
+
+   font-size:11px;
+   text-align:right;
+}
+#gs1 img{
+   height:327px;
+}
+#gs2{
+   clear:both;
+   display:block;
+   float:left;
+   width:100%;
+   color:black;
+  
+}
+#gs2>article{
+   float:left;
+   width:100%;
+   height:auto;
+}
+.gs2left{
+   float:left;
+   width:25%;
+   font-size:14px;
+}
+.gs2left>div{
+   margin:30px 15px 30px 15px;
+}
+.gs2right{
+   float:left;
+   /* width:75%; */
+   font-size:13px;
+   /* background-color:white; */
+}
+.gs2right>div{
+   margin:30px 30px 100px 30px;
+}
+.gs2right table{
+   box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
+   /* border-radius: 10px; */
+   font-family: 'Gothic A1', sans-serif;
+   background: white;
+   width: 700;
+   height: 21px;
+   padding:0;
+   font-size:17px;
+   text-align:center;
+   boder:0;
+   border-spacing:0;
+   border-collapse:collapse;
+   table-layout:fixed;
+}
+.gs2right table tr td{
+   border:1px solid #d7d7d7;
+}
+.gs2right table tr th{
+   border:1px solid #d7d7d7;
+   background-color:rgb(237, 237, 237);
+}
+.gs2right button{
+   width:97px;
+   height:26px;
+   margin:10px 0px 0px 0px;
+   color:white;
+   background-color:rgb(224, 224, 224);
+   font-size:11px;
+   border:1px solid black;
+}
+.gstime{
+   background-color:rgb(0, 221, 220);
+   font-size:38px;
+   font-weight: bolder;
+}
+.gsbold{
+   font-weight:bold;
+}
+.gsgray{
+   font-weight: lighter;
+   color:gray;
+}
+.gstitle{
+   /* border-style:solid; */
+   /* border-width:0px 0px 2px 0px; */
+   /* border-color:rgb(221, 0, 0); */
+   font-size:25px;
+   font-weight: bolder;
+}
+.gs2left div div{
+   display:block;
+   margin:0px 0px 8px 0px;
+   padding:0px;
+   width:100%;
+   border-style:solid;
+   border-width:0px 0px 2px 0px;
+   border-color:white;
+}
+@media only screen and (max-width: 1199px){
+   #gs1 img{
+      height:250px;
+   }
+}
+@media only screen and (min-width:1px) and (max-width: 780px) {
+   #gs1 img{
+      height:130px;
+   }
+   .gs2right table{
+      width:100%;
+   }
+   .gs2left{
+      width:100%;
+   }
+   .gs2right{
+      clear:both;
+      width:100%;
+   }
+   .gs2left>div{
+      margin:15px;
+   }

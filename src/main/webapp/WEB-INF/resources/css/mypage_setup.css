@@ -1,0 +1,105 @@
+.post-top-section{
+	margin-top:	25px;
+}
+
+.mypage-post {
+    margin: 0;
+    background-color: rgb(241, 241, 241);
+    font-family: 'Nanum Gothic', sans-serif;
+}
+.mypage-post a{
+    text-decoration: none
+}
+.post-top-section,
+.post-content-section {
+    float: left;
+    width: 92%;
+    margin: 0 4%;
+}
+
+.post-top-section{
+	border-radius:10px 10px 0px 0px;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+    margin-top:50px;
+}
+
+/*�븯�떒 section*/
+.post-content-section {
+	border-radius:0px 0px 10px 10px;
+    margin: 0 4% 0 4%;
+    margin-bottom:50px;
+}
+
+.post-content-section .column {
+    float: left;
+    width: 50%;
+}
+
+.post-content-section .column + .column {
+    float: none;
+    overflow: hidden;
+    width: auto;
+}
+
+.column-group {
+    margin: 16px 8px 0;
+    padding: 25px 25px 25px;
+    min-height: 185px;
+    text-align: left;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.group1{
+     margin: 16px 8px 0 0;
+}
+
+.group2{
+    margin: 16px 0 0 8px;
+}
+
+.column-header{
+    position: relative;
+}
+
+.mypage-post .column-content {
+    padding-top: 9px;
+}
+.setup-only{
+    min-height: 119px;
+}
+.column-header .contxt{
+    display: block;
+    font-size: 12px;
+    line-height: 19px;
+    margin: 8px 0 0 0;
+    padding: 0;
+    text-align: justify;
+    letter-spacing: -1px;
+    color: #9b9b9b;
+}
+
+.contxt span{
+    color: #1d89ff;
+}
+
+/*諛섏쓳�삎*/
+@media only screen and (max-width: 360px) {
+    .post-top-section .profile {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+    }
+
+    .post-top-section .profile img {
+        width: 100px;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .post-content-section .column {
+        float: none;
+        width: 100%;
+    }
+}

@@ -1,0 +1,19 @@
+.diyz-color{
+    text-align: center;
+}
+table{
+    display: inline-block;
+}
+td{
+    padding:3px;
+}
+
+.btn_color{
+    width:45px;
+    height:45px;
+    border: 0.5px solid black;
+    background: transparent;
+}
+.btn_color:focus { 
+  outline: none; 
+} 

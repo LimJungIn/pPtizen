@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.myapp.dao.BoardDao">
+    <insert id="insertContent" parameterType="java.util.HashMap">
+        insert into board(
+            subject,
+            content,
+            writer,
+            tag1,
+            tag2,
+            tag3,
+            tag4,
+            tag5,
+            tag6,
+            tag7,
+            tag8
+        )values(
+            #{subject},
+            #{content},
+            #{writer},
+            #{tag1},
+            #{tag2},
+            #{tag3},
+            #{tag4},
+            #{tag5},
+            #{tag6},
+            #{tag7},
+            #{tag8}
+        )
+    </insert>
+    <insert id="updateContent" parameterType="java.util.HashMap">
+        update
+            board
+        set
+            subject = #{subject},
+            content = #{content},
+            tag1 = #{tag1},
+            tag2 = #{tag2},
+            tag3 = #{tag3},
+            tag4 = #{tag4},
+            tag5 = #{tag5},
+            tag5 = #{tag6},
+            tag5 = #{tag7},
+            tag5 = #{tag8}
+        where
+            id = #{id}
+    </insert>
+    <select id="selectContentCnt" resultType="int" parameterType="java.util.HashMap">
+        select
+            count(id)
+        from
+            board
+    </select>
+    
+    <!-- 정렬 -->
+    <select id="selectContent" resultType="com.spring.myapp.domain.Board" parameterType="java.util.HashMap">
+        select
+            id,
+            subject,
+            content,
+            writer,
+            read_count,
+            like_count,
+            date_format(register_datetime, '%Y.%m.%d %H:%i') register_datetime
+        from
+            board
+        order by id desc
+        limit #{start}, #{end}
+    </select>
+    
+    <select id="selectBoardViewList" resultType="com.spring.myapp.domain.Board" parameterType="java.util.HashMap">
+        select
+            id,
+            subject,
+            content,
+            writer,
+            read_count,
+            like_count,
+            date_format(register_datetime, '%Y.%m.%d %H:%i') register_datetime
+        from
+            board
+        order by read_count desc
+        limit #{start}, #{end}
+    </select>
+    
+    <select id="selectBoardLikeList" resultType="com.spring.myapp.domain.Board" parameterType="java.util.HashMap">
+        select
+            id,
+            subject,
+            content,
+            writer,
+            read_count,
+            like_count,
+            date_format(register_datetime, '%Y.%m.%d %H:%i') register_datetime
+        from
+            board
+        order by like_count desc
+        limit #{start}, #{end}
+    </select>
+    
+    <select id="searchContentCnt" resultType="int" parameterType="java.util.HashMap">
+        select
+            count(id)
+        from
+            board
+        where
+        	subject like CONCAT('%', #{search}, '%')
+    </select>
+    <select id="searchContent" resultType="com.spring.myapp.domain.Board" parameterType="java.util.HashMap">
+        select
+            id,
+            subject,
+            content,
+            writer,
+            read_count,
+            like_count,
+            date_format(register_datetime, '%Y.%m.%d %H:%i') register_datetime
+        from
+            board
+        where
+        	subject like CONCAT('%', #{search}, '%')
+        order by id
+        limit #{start}, #{end}
+    </select>
+    
+    <select id="tagsearchContentCnt" resultType="int" parameterType="java.util.HashMap">
+        select
+            count(id)
+        from
+            board
+        where
+        	tag1 = #{search} or tag2 = #{search} or tag3 = #{search} or tag4 = #{search} or tag5 = #{search} or tag6 = #{search} or tag7 = #{search} or tag8 = #{search}
+    </select>
+    <select id="tagsearchContent" resultType="com.spring.myapp.domain.Board" parameterType="java.util.HashMap">
+        select
+            id,
+            subject,
+            content,
+            writer,
+            read_count,
+            like_count,
+            date_format(register_datetime, '%Y.%m.%d %H:%i') register_datetime
+        from
+            board
+ 		where
+        	tag1 = #{search} or tag2 = #{search} or tag3 = #{search} or tag4 = #{search} or tag5 = #{search} or tag6 = #{search} or tag7 = #{search} or tag8 = #{search}
+        order by id
+        limit #{start}, #{end}
+    </select>
+    
+    <select id="selectContentView" resultType="com.spring.myapp.domain.Board" parameterType="java.util.HashMap">
+        select
+            id,
+            subject,
+            content,
+            writer,
+            date_format(register_datetime, '%Y.%m.%d %H:%i') register_datetime,
+            tag1,
+            tag2,
+            tag3,
+            tag4,
+            tag5,
+            tag6,
+            tag7,
+            tag8,
+            read_count,
+            like_count
+        from
+            board
+        where
+            id = #{id}
+    </select>
+    
+    <insert id="insertBoardReply" parameterType="java.util.HashMap" useGeneratedKeys="true" keyProperty="reply_id">
+        insert into board_reply(
+            board_id,
+            parent_id,
+            depth,
+            writer,
+            reply_content
+        )values(
+            #{board_id},
+            #{parent_id},
+            #{depth},
+            #{writer},
+            #{reply_content}
+        )
+    </insert>
+    <select id="selectBoardReplyList" resultType="com.spring.myapp.domain.BoardReply" parameterType="java.util.HashMap">
+        select
+            reply_id,
+            board_id,
+            parent_id,
+            depth,
+            writer,
+            reply_content
+        from
+            board_reply
+        where
+            board_id = #{id}
+        order by reply_id asc
+    </select>
+    <delete id="deleteBoardReply" parameterType="java.util.HashMap">
+    	delete
+    	from
+    		board_reply
+    	where
+    		reply_id = #{reply_id}
+    </delete>
+    <delete id="deleteBoardReplyAll" parameterType="java.util.HashMap">
+        delete
+        from
+            board_reply
+        where
+            reply_id in (
+                select
+                    reply_id
+                from
+                (select
+                    reply_id
+                from
+                    board_reply
+                where
+                    reply_id = #{reply_id}) a
+            ) or parent_id in (
+                select
+                    reply_id
+                from
+                (select
+                    reply_id
+                from
+                    board_reply
+                where
+                    reply_id = #{reply_id}) a
+            )
+    </delete>
+	<select id="selectBoardCnt" resultType="int" parameterType="java.util.HashMap">
+        select
+            count(id)
+        from
+            board
+        where
+            id = #{id}
+    </select>
+    <delete id="deleteBoard" parameterType="java.util.HashMap">
+        delete
+        from
+            board
+        where
+            id = #{id}
+    </delete>
+    <select id="selectReplyPassword" resultType="int" parameterType="java.util.HashMap">
+    	select
+    		count(*)
+    	from
+    		board_reply
+    	where
+    		reply_id = #{reply_id}
+    </select>
+    <update id="updateReply" parameterType="java.util.HashMap">
+    	update
+		    board_reply
+		set
+		    parent_id = #{parent_id},
+		    depth = #{depth},
+		    reply_content = #{reply_content}
+		where
+		    reply_id = #{reply_id}
+    </update>
+    <select id="selectBoards" resultType="com.spring.myapp.domain.Board" parameterType="java.util.HashMap">
+        select
+            id,
+            subject,
+            content,
+            writer,
+            date_format(register_datetime, '%Y-%m-%d %H:%i:%s') register_datetime,
+            read_count,
+            like_count
+        from
+            board
+        order by id
+    </select>
+    <delete id="dropBoard" parameterType="java.util.HashMap">
+        delete
+        from
+            board
+        where
+            id IN <foreach collection="list" item="id" open="(" separator="," close=")">#{id}</foreach>
+    </delete>
+    
+    <!-- 조회수 -->
+    <update id="updateBoardView" parameterType="String">
+    	update
+    		board
+    	set
+    		read_count=read_count + 1
+    	where
+    		id=#{id}
+    </update>
+    
+    <!-- Like 기능 관련 쿼리 -->
+    <select id="checkBoardLike" parameterType="java.util.HashMap" resultType="int">
+    	select EXISTS(
+	        select *
+	        from
+	            boardLike
+	        where
+	        	like_boardId = #{like_boardId} and like_sendUserId = #{like_sendUserId}
+	    )as isChk
+    </select>
+    
+    <insert id="insertLike" parameterType="java.util.HashMap">
+    	insert into BoardLike(
+    		like_boardId
+    	   ,like_getUserNickName
+    	   ,like_sendUserId
+    	)values(
+    		 #{like_boardId}
+    		,#{like_getUserNickName}
+    		,#{like_sendUserId}
+    	)
+    </insert>
+    
+    <delete id="delBoardLike" parameterType="java.util.HashMap">
+        delete
+        from
+            boardLike
+        where
+        	like_boardId = #{like_boardId} and like_sendUserId = #{like_sendUserId}
+    </delete>
+    
+    <update id="updateBoardLikeCount" parameterType="java.util.HashMap">
+    	UPDATE
+    		board
+    	SET board.like_count = (select count(case when like_boardId = #{like_boardId} then 1 end) from boardLike)
+    	WHERE
+    		board.id = #{like_boardId}
+    </update>
+    
+    <!-- 팔로우 구현 부분 시작 -->
+    <select id="followCheck" resultType="int" parameterType="java.util.HashMap">
+    	select
+    		count(*)
+    	from
+    		follow
+    	where
+    		follow_id = #{follow_id} and following_id = #{following_id}
+    </select>
+    <insert id="regFollow" parameterType="java.util.HashMap" useGeneratedKeys="true" keyProperty="id">
+        insert into follow(
+            follow_id,
+            following_id
+        )values(
+            #{follow_id},
+            #{following_id}
+        )
+    </insert>
+    <delete id="delFollow" parameterType="java.util.HashMap">
+        delete
+        from
+            follow
+        where
+            follow_id = #{follow_id} and following_id = #{following_id}
+    </delete>
+    <select id="selectfollowCount" resultType="int" parameterType="java.util.HashMap">
+        select
+            count(id)
+        from
+            follow
+        where
+            follow_id = #{follow_id}
+    </select>
+    <select id="selectfollowMessage" resultType="String" parameterType="java.util.HashMap">
+	    select 
+			user_profile
+	    from 
+	    	users
+	    where
+	    	user_nickname = #{follow_id}
+    </select>
+</mapper>
+ 

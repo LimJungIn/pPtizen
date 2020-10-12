@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.myapp.dao.TemplateDao">
+    <insert id="insertTemplateContent" parameterType="java.util.HashMap">
+        insert into template_board (
+            subject,
+            content,
+            writer,
+            tag1,
+            tag2,
+            tag3,
+            tag4,
+            tag5,
+            tag6,
+            tag7,
+            tag8,
+            file1,
+            file2,
+            file3,
+            file4,
+            file5
+        )values(
+            #{subject},
+            #{content},
+            #{writer},
+            #{tag1},
+            #{tag2},
+            #{tag3},
+            #{tag4},
+            #{tag5},
+            #{tag6},
+            #{tag7},
+            #{tag8},
+            #{file1},
+            #{file2},
+            #{file3},
+            #{file4},
+            #{file5}
+        )
+    </insert>
+    <insert id="updateTemplateContent" parameterType="java.util.HashMap">
+        update
+            template_board
+        set
+            subject = #{subject},
+            content = #{content},
+            tag1 = #{tag1},
+            tag2 = #{tag2},
+            tag3 = #{tag3},
+            tag4 = #{tag4},
+            tag5 = #{tag5},
+            tag5 = #{tag6},
+            tag5 = #{tag7},
+            tag5 = #{tag8},
+            file1 = #{file1},
+            file2 = #{file2},
+            file3 = #{file3},
+            file4 = #{file4},
+            file5 = #{file5}
+        where
+            id = #{id}
+    </insert>
+    <select id="selectTemplateContentCnt" resultType="int" parameterType="java.util.HashMap">
+        select
+            count(id)
+        from
+            template_board
+    </select>
+    
+    <!-- 정렬 -->
+    <select id="selectTemplateContent" resultType="com.spring.myapp.domain.Template" parameterType="java.util.HashMap">
+        select
+            id,
+            subject,
+            content,
+            writer,
+            read_count,
+            like_count,
+            date_format(register_datetime, '%Y-%m-%d %H:%i:%s') register_datetime,
+            file1
+        from
+            template_board
+        order by id desc
+        limit #{start}, #{end}
+    </select>
+    
+    <select id="selectTemplateViewList" resultType="com.spring.myapp.domain.Template" parameterType="java.util.HashMap">
+        select
+            id,
+            subject,
+            content,
+            writer,
+            read_count,
+            like_count,
+            date_format(register_datetime, '%Y-%m-%d %H:%i:%s') register_datetime,
+            file1
+        from
+            template_board
+        order by read_count desc
+        limit #{start}, #{end}
+    </select>
+    
+    <select id="selectTemplateLikeList" resultType="com.spring.myapp.domain.Template" parameterType="java.util.HashMap">
+        select
+            id,
+            subject,
+            content,
+            writer,
+            read_count,
+            like_count,
+            date_format(register_datetime, '%Y-%m-%d %H:%i:%s') register_datetime,
+            file1
+        from
+            template_board
+        order by like_count desc
+        limit #{start}, #{end}
+    </select>
+    
+    
+    <select id="searchTemplateContentCnt" resultType="int" parameterType="java.util.HashMap">
+        select
+            count(id)
+        from
+            template_board
+        where
+        	subject like CONCAT('%', #{search}, '%')
+    </select>
+    
+    <select id="searchTemplateContent" resultType="com.spring.myapp.domain.Template" parameterType="java.util.HashMap">
+        select
+            id,
+            subject,
+            content,
+            writer,
+            read_count,
+            like_count,
+            file1
+        from
+            template_board
+        where
+        	subject like CONCAT('%', #{search}, '%')
+        order by id
+        limit #{start}, #{end}
+    </select>
+    
+    <select id="tagsearchTemplateContentCnt" resultType="int" parameterType="java.util.HashMap">
+        select
+            count(id)
+        from
+            template_board
+        where
+        	tag1 = #{search} or tag2 = #{search} or tag3 = #{search} or tag4 = #{search} or tag5 = #{search} or tag6 = #{search} or tag7 = #{search} or tag8 = #{search}
+    </select>
+    <select id="tagsearchTemplateContent" resultType="com.spring.myapp.domain.Template" parameterType="java.util.HashMap">
+        select
+            id,
+            subject,
+            content,
+            writer,
+            read_count,
+            like_count,
+            date_format(register_datetime, '%Y.%m.%d %H:%i') register_datetime,
+            file1
+        from
+            template_board
+ 		where
+        	tag1 = #{search} or tag2 = #{search} or tag3 = #{search} or tag4 = #{search} or tag5 = #{search} or tag6 = #{search} or tag7 = #{search} or tag8 = #{search}
+        order by id
+        limit #{start}, #{end}
+    </select>
+    
+    <select id="selectTemplateContentView" resultType="com.spring.myapp.domain.Template" parameterType="java.util.HashMap">
+        select
+            id,
+            subject,
+            content,
+            writer,
+            date_format(register_datetime, '%Y-%m-%d %H:%i:%s') register_datetime,
+            tag1,
+            tag2,
+            tag3,
+            tag4,
+            tag5,
+            tag6,
+            tag7,
+            tag8,
+            file1,
+            file2,
+            file3,
+            file4,
+            file5,
+            read_count,
+            like_count
+        from
+            template_board
+        where
+            id = #{id}
+    </select>
+    <insert id="insertTemplateReply" parameterType="java.util.HashMap" useGeneratedKeys="true" keyProperty="reply_id">
+        insert into template_board_reply(
+            template_id,
+            parent_id,
+            depth,
+            writer,
+            reply_content
+        )values(
+            #{template_id},
+            #{parent_id},
+            #{depth},
+            #{writer},
+            #{reply_content}
+        )
+    </insert>
+    <select id="selectTemplateReplyList" resultType="com.spring.myapp.domain.TemplateReply" parameterType="java.util.HashMap">
+        select
+            reply_id,
+            template_id,
+            parent_id,
+            depth,
+            writer,
+            reply_content
+        from
+            template_board_reply
+        where
+            template_id = #{id}
+        order by reply_id asc
+    </select>
+    <delete id="deleteTemplateReply" parameterType="java.util.HashMap">
+    	delete
+    	from
+    		template_board_reply
+    	where
+    		reply_id = #{reply_id}
+    </delete>
+    <delete id="deleteTemplateReplyAll" parameterType="java.util.HashMap">
+        delete
+        from
+            template_board_reply
+        where
+            reply_id in (
+                select
+                    reply_id
+                from
+                (select
+                    reply_id
+                from
+                    template_board_reply
+                where
+                    reply_id = #{reply_id}) a
+            ) or parent_id in (
+                select
+                    reply_id
+                from
+                (select
+                    reply_id
+                from
+                    template_board_reply
+                where
+                    reply_id = #{reply_id}) a
+            )
+    </delete>
+	<select id="selectTemplateCnt" resultType="int" parameterType="java.util.HashMap">
+        select
+            count(id)
+        from
+            template_board
+        where
+            id = #{id}
+    </select>
+    <delete id="deleteTemplate" parameterType="java.util.HashMap">
+        delete
+        from
+            template_board
+        where
+            id = #{id}
+    </delete>
+    <select id="selectTemplateReplyPassword" resultType="int" parameterType="java.util.HashMap">
+    	select
+    		count(*)
+    	from
+    		template_board_reply
+    	where
+    		reply_id = #{reply_id}
+    </select>
+    <update id="updateTemplateReply" parameterType="java.util.HashMap">
+    	update
+		    template_board_reply
+		set
+		    parent_id = #{parent_id},
+		    depth = #{depth},
+		    reply_content = #{reply_content}
+		where
+		    reply_id = #{reply_id}
+    </update>
+    <select id="selectTemplates" resultType="com.spring.myapp.domain.Template" parameterType="java.util.HashMap">
+        select
+            id,
+            subject,
+            content,
+            writer,
+            date_format(register_datetime, '%Y-%m-%d %H:%i:%s') register_datetime,
+            read_count,
+            like_count,
+            file1
+        from
+            template_board
+        order by id
+    </select>
+    <delete id="dropTemplate" parameterType="java.util.HashMap">
+        delete
+        from
+            template_board
+        where
+            id IN <foreach collection="list" item="id" open="(" separator="," close=")">#{id}</foreach>
+    </delete>
+    
+    
+    <!-- 조회수 -->
+    <update id="updateTemplateView" parameterType="String">
+    	update
+    		template_board
+    	set
+    		read_count=read_count + 1
+    	where
+    		id = #{id}
+    </update>
+    
+    <!-- Like 기능 관련 쿼리 -->
+    <select id="checkTemplateLike" parameterType="java.util.HashMap" resultType="int">
+    	select EXISTS(
+	        select *
+	        from
+	            templateLike
+	        where
+	        	like_templateId = #{like_templateId} and like_sendUserId = #{like_sendUserId}
+	    )as isChk
+    </select>
+    
+    <insert id="insertTemplateLike" parameterType="java.util.HashMap">
+    	insert into templateLike(
+    		like_templateId
+    	   ,like_getUserNickName
+    	   ,like_sendUserId
+    	   ,job
+    	)values(
+    		 #{like_templateId}
+    		,#{like_getUserNickName}
+    		,#{like_sendUserId}
+    		,#{job}
+    	)
+    </insert>
+    
+    <delete id="delTemplateLike" parameterType="java.util.HashMap">
+        delete
+        from
+            templateLike
+        where
+        	like_templateId = #{like_templateId} and like_sendUserId = #{like_sendUserId}
+    </delete>
+    
+    <update id="updateTemplateLikeCount" parameterType="java.util.HashMap">
+    	UPDATE
+    		template_board
+    	SET template_board.like_count = (select count(case when like_templateId = #{like_templateId} then 1 end) from templateLike)
+    	WHERE
+    		template_board.id = #{like_templateId}
+    </update>
+    
+    <!-- 유저 라이크 리스트 -->
+    <select id="getUserLikeList" resultType="com.spring.myapp.domain.Index" parameterType="java.util.HashMap">
+        select
+        	tb.id,
+        	tb.subject,
+        	tb.writer,
+        	tb.file1
+        from
+        	templateLike as tl
+        join
+        	template_board as tb
+        on
+        	tl.like_templateId = tb.id
+        where
+        	tl.like_sendUserId = #{user_id}
+    </select>
+    
+ <select id="getTemplateAdminList" resultType="com.spring.myapp.domain.Template" parameterType="java.util.HashMap">
+        select
+            id,
+            subject,
+            content,
+            writer,
+            date_format(register_datetime, '%Y-%m-%d %H:%i:%s') register_datetime,
+			like_count,
+            read_count
+        from
+            template_board
+    </select>
+    
+    <delete id="dropAdminTemplate" parameterType="java.util.HashMap">
+        delete
+        from
+            template_board
+        where
+            id IN <foreach collection="list" item="id" open="(" separator="," close=")">#{id}</foreach>
+    </delete>
+</mapper>
+ 

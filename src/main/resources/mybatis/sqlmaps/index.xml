@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.myapp.dao.IndexDao">
+    <select id="getBoardContentList" resultType="com.spring.myapp.domain.Index" parameterType="java.util.HashMap">
+       select
+            b.id,
+            b.subject,
+            date_format(b.register_datetime, '%Y-%m-%d %H:%i') register_datetime,
+            coalesce(br.reply_cnt, 0) as reply_cnt
+        from
+            board as b
+        left join
+        	(select board_id, count(board_id) as reply_cnt from board_reply group by board_id) as br
+        on
+        	b.id = br.board_id
+        order by id desc
+        Limit 4
+    </select>
+    
+    <select id="getTemplateContentList" resultType="com.spring.myapp.domain.Index" parameterType="java.util.HashMap">
+       select
+            t.id,
+            t.subject,
+            date_format(t.register_datetime, '%Y-%m-%d %H:%i') register_datetime,
+            coalesce(tr.reply_cnt, 0) as reply_cnt
+        from
+            template_board as t
+        left join
+        	(select template_id, count(template_id) as reply_cnt from template_board_reply group by template_id) as tr
+       	on
+        	t.id = tr.template_id
+        order by id desc
+        Limit 4
+    </select>
+    
+    <!-- <select id="checkTemplateData" resultType="int" parameterType="java.util.HashMap">
+    	select
+    		count(id) as cnt
+    	from
+    		template_board
+    	where
+    		date_format(register_datetime, '%Y-%m-%d') BETWEEN #{startDay} AND #{endDay}
+    </select> -->
+    
+    <select id="getTemplateLikeList" resultType="com.spring.myapp.domain.Index" parameterType="java.util.HashMap">
+       select
+            id,
+            subject,
+            writer,
+            file1,
+            date_format(register_datetime, '%Y-%m-%d %H:%i') register_datetime
+        from
+            template_board
+        where
+        	(date_format(register_datetime, '%Y-%m-%d') BETWEEN #{startDay} AND #{endDay})
+        	OR (date_format(register_datetime, '%Y-%m-%d') BETWEEN #{beforeMonth} AND #{endDay})
+        order by like_count desc
+        Limit 8
+    </select>
+    
+    <select id="getTemplateViewList" resultType="com.spring.myapp.domain.Index" parameterType="java.util.HashMap">
+       select
+            id,
+            subject,
+            writer,
+            file1,
+            date_format(register_datetime, '%Y-%m-%d %H:%i') register_datetime
+        from
+            template_board
+        where
+        	(date_format(register_datetime, '%Y-%m-%d') BETWEEN #{startDay} AND #{endDay})
+        	OR (date_format(register_datetime, '%Y-%m-%d') BETWEEN #{beforeMonth} AND #{endDay})
+        order by read_count desc
+        Limit 8
+    </select>
+    
+    <select id ="getTagList" resultType="com.spring.myapp.domain.Index" parameterType="java.util.HashMap">
+		(select 
+			tags, count(tags) as tag_cnt from
+				(select tag1 as tags from template_board where not tag1 is null
+					and ((date_format(register_datetime, '%Y-%m-%d') BETWEEN #{startDay} AND #{endDay})
+						OR (date_format(register_datetime, '%Y-%m-%d') BETWEEN #{beforeMonth} AND #{endDay}))
+			union ALL
+				select tag2 as tags from template_board where not tag2 is null
+					and ((date_format(register_datetime, '%Y-%m-%d') BETWEEN #{startDay} AND #{endDay})
+						OR (date_format(register_datetime, '%Y-%m-%d') BETWEEN #{beforeMonth} AND #{endDay}))
+			union all
+				select tag3 as tags from template_board where not tag3 is null
+					and ((date_format(register_datetime, '%Y-%m-%d') BETWEEN #{startDay} AND #{endDay})
+						OR (date_format(register_datetime, '%Y-%m-%d') BETWEEN #{beforeMonth} AND #{endDay}))
+			union all
+				select tag4 as tags from template_board where not tag4 is null
+					and ((date_format(register_datetime, '%Y-%m-%d') BETWEEN #{startDay} AND #{endDay})
+						OR (date_format(register_datetime, '%Y-%m-%d') BETWEEN #{beforeMonth} AND #{endDay}))
+			union all
+				select tag5 as tags from template_board where not tag5 is null
+					and ((date_format(register_datetime, '%Y-%m-%d') BETWEEN #{startDay} AND #{endDay})
+						OR (date_format(register_datetime, '%Y-%m-%d') BETWEEN #{beforeMonth} AND #{endDay}))
+			union all
+				select tag6 as tags from template_board where not tag6 is null
+					and ((date_format(register_datetime, '%Y-%m-%d') BETWEEN #{startDay} AND #{endDay})
+						OR (date_format(register_datetime, '%Y-%m-%d') BETWEEN #{beforeMonth} AND #{endDay}))
+			union all
+				select tag7 as tags from template_board where not tag7 is null
+					and ((date_format(register_datetime, '%Y-%m-%d') BETWEEN #{startDay} AND #{endDay})
+						OR (date_format(register_datetime, '%Y-%m-%d') BETWEEN #{beforeMonth} AND #{endDay}))
+			union all
+				select tag8 as tags from template_board where not tag8 is null
+					and ((date_format(register_datetime, '%Y-%m-%d') BETWEEN #{startDay} AND #{endDay})
+						OR (date_format(register_datetime, '%Y-%m-%d') BETWEEN #{beforeMonth} AND #{endDay}))
+				) as All_Tags
+		group by tags
+		order by tag_cnt desc
+		Limit 12)
+		order by rand() limit 3
+ 	</select>
+ 	
+ 	<select id ="getHash1TagList" resultType="com.spring.myapp.domain.Index" parameterType="java.util.HashMap">
+ 		select
+           	id,
+            subject,
+            writer,
+            file1,
+            date_format(register_datetime, '%Y-%m-%d %H:%i') register_datetime
+        from
+            template_board
+		where
+			(tag1 = #{hash1} or tag2 = #{hash1} or tag3 = #{hash1} or tag4 = #{hash1} or tag5 = #{hash1}
+	        or tag6 = #{hash1} or tag7 = #{hash1} or tag8 = #{hash1})
+	        and ((date_format(register_datetime, '%Y-%m-%d') BETWEEN #{startDay} AND #{endDay})
+				OR (date_format(register_datetime, '%Y-%m-%d') BETWEEN #{beforeMonth} AND #{endDay}))
+        order by id desc
+        Limit 8
+ 	</select>
+ 	
+ 	<select id ="getHash2TagList" resultType="com.spring.myapp.domain.Index" parameterType="java.util.HashMap">
+ 		select
+           	id,
+            subject,
+            writer,
+            file1,
+            date_format(register_datetime, '%Y-%m-%d %H:%i') register_datetime
+        from
+            template_board
+		where
+			(tag1 = #{hash2} or tag2 = #{hash2} or tag3 = #{hash2} or tag4 = #{hash2} or tag5 = #{hash2}
+	        or tag6 = #{hash2} or tag7 = #{hash2} or tag8 = #{hash2})
+	        and ((date_format(register_datetime, '%Y-%m-%d') BETWEEN #{startDay} AND #{endDay})
+					OR (date_format(register_datetime, '%Y-%m-%d') BETWEEN #{beforeMonth} AND #{endDay}))
+        order by id desc
+        Limit 8
+ 	</select>
+ 	
+ 	<select id ="getHash3TagList" resultType="com.spring.myapp.domain.Index" parameterType="java.util.HashMap">
+ 		select
+           	id,
+            subject,
+            writer,
+            file1,
+            date_format(register_datetime, '%Y-%m-%d %H:%i') register_datetime
+        from
+            template_board
+		where
+			(tag1 = #{hash3} or tag2 = #{hash3} or tag3 = #{hash3} or tag4 = #{hash3} or tag5 = #{hash3}
+	        or tag6 = #{hash3} or tag7 = #{hash3} or tag8 = #{hash3})
+	        and ((date_format(register_datetime, '%Y-%m-%d') BETWEEN #{startDay} AND #{endDay})
+					OR (date_format(register_datetime, '%Y-%m-%d') BETWEEN #{beforeMonth} AND #{endDay}))
+        order by id desc
+        Limit 8
+ 	</select>
+</mapper>

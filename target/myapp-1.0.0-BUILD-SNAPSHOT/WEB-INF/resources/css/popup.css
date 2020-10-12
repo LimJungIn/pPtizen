@@ -1,0 +1,557 @@
+body {
+    background-color: black;
+    font-family: 'Nanum Gothic', sans-serif;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+ul li {
+    list-style: none;
+}
+
+.layer-popup,
+.layer-header,
+.lpopup-bodyWindow {
+    float: left;
+    width: 800px;
+}
+
+.lpopup-top {
+    float: left;
+    width: 760px;
+    padding: 10px 20px;
+}
+
+.layer-popup {
+    background-color: white;
+    font-family: 'Gothic A1', sans-serif;
+    border-radius: 6px;
+}
+
+/*layer-header*/
+.layer-header {
+    height: auto;
+    background-color: rgb(241, 241, 241);
+    color: black;
+    border-radius: 6px 6px 0px 0px;
+}
+
+.layer-header > div {
+    float: left;
+    width: 745px;
+}
+
+.layer-header a {
+    float: right;
+    font-weight: bold;
+    margin: 20px 15px;
+}
+
+.lpopup-like-icon {
+    float: left;
+    width: 15px;
+    margin-right: 10px;
+}
+
+.layer-header a img {
+    float: left;
+    width: 15px;
+    height: 15px;
+}
+
+.lpopup-top {
+    height: auto;
+}
+
+.lpopup-left {
+    float: left;
+    width: 560px;
+    padding-top: 10px;
+    margin-left: 15px;
+    font-family: 'Francois One', sans-serif;
+    font-size: 25px;
+}
+
+.lpopup-left > .nickname {
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 14px;
+    color: #1d89ff;
+    font-weight: bold;
+}
+
+.lpopup-title > .lpopup-title.lpopup-title > .nickname {
+    float: left;
+    height: 40px;
+}
+
+.layer-header > img {
+    float: left;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 15px;
+    margin-top: 18px;
+}
+
+.lpopup-side {
+    float: right;
+    width: 150px;
+    height: 50px;
+    margin: 20px 0;
+}
+
+.lpopup-bottom {
+    height: 25px;
+}
+
+/*bodyWindow*/
+.lpopup-body {
+    float: left;
+    width: 760px;
+    padding: 30px 20px;
+    font-size: 15px;
+}
+
+.lpopup-attachment {
+    float: left;
+    width: 760px;
+    height: 125px;
+    padding: 10px 20px 0px 20px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.lpopup-attachment .name {
+    width: 100%;
+    height: 20px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #999999;
+}
+
+.lpopup-attachment .templateList {
+    float: left;
+    width: 100%;
+    height: 80px;
+    overflow-y: auto;
+}
+
+.lpopup-attachment .templateList .template {
+    float: left;
+}
+
+.lpopup-attachment .templateList img {
+    float: left;
+    margin: 0 17px 15px 17px;
+}
+
+/*comment*/
+.comment-list,
+.reply-list,
+.comment-list li {
+    float: left;
+}
+
+.comment-list,
+.comment-list li {
+    width: 100%;
+    padding: 0;
+}
+
+.lpopup-commentHeader {
+    float: left;
+    width: 460px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #999999;
+}
+
+.lpopup-commentHeader .comment-sort {
+    float: right;
+    font-size: 13px;
+    color: #999999;
+    font-weight: normal;
+}
+
+.lpopup-commentHeader .comment-sort a {
+    margin: 0 0 0 8px;
+}
+
+.lpopup-commentWindow {
+    float: left;
+    width: 460px;
+    height: auto;
+    padding: 20px;
+}
+
+.lpopup-comment {
+    float: left;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.lpopup-comment .left {
+    float: left;
+    height: auto;
+    width: 100%;
+    margin-bottom: 6px;
+}
+
+.lpopup-comment .right {
+    float: left;
+    width: 100%;
+    height: auto;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #ddd;
+}
+
+.lpopup-commentWindow .right div {
+    float: left;
+    width: 100%;
+}
+
+.lpopup-commentWindow .profile {
+    float: left;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+}
+
+.lpopup-commentWindow h2 {
+    margin: 0 0 2px 0;
+    font-weight: bold;
+}
+
+.lpopup-comment .left > div {
+    float: left;
+    margin: 6px 0 0 6px;
+}
+
+.lpopup-commentWindow .nickname {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.lpopup-commentWindow .body {
+    font-size: 14px;
+}
+
+.lpopup-commentWindow .bottom {
+    font-size: 12px;
+    color: #555555;
+    margin-top: 6.5px;
+}
+
+.lpopup-commentWindow .bottom .modify,
+.lpopup-commentWindow .bottom .delete {
+    margin: 0 5px 0 0;
+    color: #999999;
+    font-size: 12px;
+}
+
+.lpopup-commentWindow .reply {
+    margin: 0 5px 0 0;
+    color: #555555;
+    font-size: 12px;
+}
+
+.lpopup-commentWindow .bottom .sep {
+    margin: 0 5px;
+}
+
+.lpopup-commentWindow .bottom {
+    height: 16px;
+}
+
+.lpopup-commentWindow form {
+    float: right;
+    margin: 0;
+}
+
+.lpopup-commentWindow input {
+    float: right;
+    height: 100%;
+}
+
+/*답글 세부설정*/
+.lpopup-reply {
+    float: left;
+    width: 95%;
+}
+
+.lpopup-reply .left {
+    float: left;
+    width: 100%;
+    margin-bottom: 6px;
+}
+
+.lpopup-reply .left > img {
+    float: left;
+}
+
+.lpopup-reply .left > div {
+    float: left;
+    margin: 6px 0 0 6px;
+}
+
+.lpopup-reply .right {
+    clear: both;
+    float: left;
+    width: 100%;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #ddd;
+}
+
+.reply-arrow {
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.reply-list {
+    width: 100%;
+    padding: 0;
+}
+
+.reply-list li {
+    float: left;
+    width: 99%;
+    padding: 15px 0 15px 6%;
+}
+
+.reply-list > span:before {
+    float: left;
+    content: 're:';
+    font-size: 10px;
+    background-color: #1d89ff;
+    color: white;
+    border-radius: 3px;
+    padding: 2px 2px;
+    margin: 0px 5px;
+    position: absolute;
+    margin-top: 20px;
+}
+
+.lpopup-bottomside {
+    float: left;
+    width: 260px;
+    height: auto;
+    padding: 20px;
+    font-size: 13px;
+}
+
+.lpopup-stats,
+.share,
+.stats,
+.view,
+.like,
+.date,
+.lpopup-player-shots,
+.ad {
+    float: left;
+    width: 100%;
+}
+
+.lpopup-stats .share a {
+    float: left;
+    font-size: 12px;
+}
+
+.lpopup-stats > div > a > div {
+    float: left;
+    widows: 13px;
+}
+
+.lpopup-stats .share a img {
+    width: 13px;
+    margin-right: 4px;
+}
+
+.lpopup-stats #facebook,
+.lpopup-stats #tweet {
+    margin-right: 13px;
+}
+
+.lpopup-stats > div,
+.lpopup-player-shots,
+.ad {
+    margin-bottom: 15px;
+    color: #555555;
+}
+
+.lpopup-stats .view,
+.lpopup-stats .like {
+    margin-bottom: 15px;
+}
+
+.lpopup-stats .view div,
+.lpopup-stats .like div,
+.lpopup-stats .date div {
+    float: left;
+    width: 16px;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.lpopup-stats .view,
+.lpopup-stats .like,
+.lpopup-stats .date {
+    float: left;
+    width: 260px;
+}
+
+.lpopup-stats .view img,
+.lpopup-stats .like img,
+.lpopup-stats .date img {
+    float: left;
+    width: 16px;
+}
+
+.lpopup-stats .date,
+.lpopup-player-shots,
+.ad {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+}
+
+.lpopup-player-shots {
+    font-size: 14px;
+    font-weight: bold;
+    color: #999999;
+}
+
+.lpopup-player-shots ol {
+    float: left;
+    width: 100%;
+    margin: 10px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.lpopup-player-shots li {
+    float: left;
+    width: 46%;
+    margin: 10px 5px 10px 5px;
+}
+
+.lpopup-player-shots li a {
+    float: left;
+    width: 100%;
+}
+
+.lpopup-player-shots li a img {
+    float: left;
+    width: 100%;
+    border-radius: 2px;
+}
+
+.ad {
+    font-size: 13px;
+    text-align: center;
+}
+
+.ad img {
+    width: 160px;
+    margin-bottom: 10px;
+}
+
+/*반응형*/
+@media only screen and (max-width: 629px) {
+    .layer-header > div {
+        clear: both;
+        width: 95%;
+        margin-left: 15px;
+    }
+}
+
+@media only screen and (min-width:630px) and (max-width:958px) {
+    .layer-header > div {
+        width: 90%;
+        margin-left: 15px;
+    }
+}
+
+@media only screen and (max-width: 959px) {
+
+    .layer-popup,
+    .layer-header,
+    .lpopup-bodyWindow,
+    .lpopup-commentHeader,
+    .lpopup-body {
+        width: 100%;
+    }
+
+    .lpopup-commentWindow,
+    .lpopup-body {
+        width: 96%;
+        padding: 2%;
+    }
+
+    .lpopup-bottomside {
+        width: 96%;
+        padding: 0 2% 1% 2%;
+    }
+
+    .lpopup-attachment {
+        width: 96%;
+        padding: 2% 2% 0 2%;
+    }
+
+    .layer-header a {
+        float: left;
+        clear: both;
+        margin: 8px 0 10px 0;
+    }
+
+    .lpopup-left {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .lpopup-stats {
+        clear: both;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .lpopup-stats .date {
+        padding: 0;
+        margin: 0;
+        border-bottom: none;
+    }
+
+    .lpopup-stats .view,
+    .lpopup-stats .like {
+        margin: 0;
+    }
+
+    .lpopup-stats .view,
+    .lpopup-stats .like,
+    .lpopup-stats .date {
+        width: 26%;
+        margin: 0 3.6%;
+        text-align: center;
+    }
+
+    .lpopup-stats .share {
+        float: right;
+        width: 260px;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    .layer-popup {
+        border-radius: 0;
+    }
+
+    .reply-list li {
+        width: 99.9%;
+        padding: 15px 0 15px 5%;
+    }
+}

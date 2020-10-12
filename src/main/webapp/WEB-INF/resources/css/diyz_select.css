@@ -1,0 +1,147 @@
+/*diyz_select.html*/
+.diyz-select-body{
+    background-color: rgb(241, 241, 241);
+    margin: 0;
+}
+.centered { display:table; margin-left:auto; margin-right:auto; }
+.diyz-select{
+    float: left;
+    width: 74%;
+    margin: 3.5% 13%;
+    clear: both;
+    font-family: 'Nanum Gothic', sans-serif;
+    color: black;
+    text-align: center;
+}
+.select-comment{
+    font-size: 28px;
+    font-weight: 600;
+}
+.select-comment p{
+    font-size: 18px;
+    margin-block-start: 0.3em;
+    color: #9c9c9c;
+    font-weight:600;
+}
+.select-body{
+    float: left;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+}
+.diyz-select>div>div{
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+.diyz-select article{
+    float: left;
+    width: 20.88%;
+    margin: 2%;
+}
+.select-body input{
+    display: none;
+}
+.select-body input:checked + label, .select-body input:checked + label:active {
+    border: 2px solid #1d89ff;
+}
+label{
+    float: left;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin: 2%;
+    border: 2px solid #c9c9c9;
+    border-radius: 6px 6px 6px 6px;
+}
+.select-img{
+    float: left;
+    width: 100%;
+    padding: 18px 0;
+    border: none;
+    border-radius: 6px 6px 0 0;
+    background-color: #caefff;
+}
+.select-img img{
+    float: left;
+    width: 100%;
+    height: auto;
+}
+.select-txt{
+    float: left;
+    width: 100%;
+    padding: 20px 0;
+    border: none;
+    border-radius: 0 0 6px 6px;
+    font-size: 17px;
+    background-color: white;
+    text-align: center;
+}
+.select-txt span{
+    color: #9c9c9c;
+    font-size: 14px;
+}
+.diyz-select-nextbar{
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    height: 60px;
+    float: left;
+    width: 100%;
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-top: 1px solid #c9c9c9;
+    align-items: center;
+}
+#prevbar-sumbit{
+	background-color: #bbbbbb;
+}
+#nextbar-sumbit, #prevbar-sumbit{
+    width: 100px;
+    height: 35px;
+    margin : 0 10px;
+}
+#nextbar-sumbit-plus{
+    width: 100px;
+    height: 35px;
+    margin-left: 50px;
+}
+/*반응형*/
+@media screen and (max-width:420px){
+    .diyz-select article{
+        float: left;
+        width: 100%;
+        margin: 0;
+    }
+}
+@media screen and (min-width:421px) and (max-width:800px){
+    .diyz-select article{
+        float: left;
+        width: 45%;
+        margin: 2%;
+    }
+    .select-txt{
+        font-size: 0.75em;
+    }
+    .select-txt span{
+        font-size: 12px;
+    }
+}
+@media screen and (max-width:730px){
+    .select-comment{
+        font-size: 1.2em;
+    }
+    .select-comment p{
+        font-size: 14px;
+    }
+}
+@media screen and (min-width:731px) and (max-width:1000px){
+    .diyz-select article{
+        float: left;
+        width: 29%;
+        margin: 2%;
+    }
+}
